@@ -1,0 +1,10 @@
+Directions:
+
+Create Snapshots.csv and add the VM names of the machines with snapshots to remove
+
+Create log.txt
+Put log.txt and Snapshots.csv onto PowerCLI server desktop
+
+Copy/paste code from Remove Snapshots.ps1 into Powershell admin window on the server(always start with a new Powershell window)
+
+Use carmeuse\admaccount for username

@@ -1,0 +1,1 @@
+New-MailContact -Alias "tester" -Name "tester" -ExternalEmailAddress "tester@sp.contoso.com" -PrimarySmtpAddress "tester@sp.contoso.com" -OrganizationalUnit "contoso.net/contoso/NAM/NAM Contacts"
