@@ -1,9 +1,9 @@
 
-Connect-SPOService -Url https://carmeuse-admin.sharepoint.com
+Connect-SPOService -Url https://contoso-admin.sharepoint.com
 #use above if below doesnt work to connect
 #Variables for processing
-$AdminURL = "https://carmeuse-admin.sharepoint.com/"
-$AdminName = "srv_exchm365@carmeuse.onmicrosoft.com"
+$AdminURL = "https://contoso-admin.sharepoint.com/"
+$AdminName = "user@contoso.onmicrosoft.com"
 
 #User Names Password to connect 
 $Password = Read-host -assecurestring "Password?"
@@ -17,22 +17,22 @@ $Sites = Get-SPOSite -Limit ALL
 Foreach ($Site in $Sites)
 {
     Write-host "Adding Site Collection Admin for:"$Site.URL
-    Set-SPOUser -site $Site -LoginName "srv_exchm365" -IsSiteCollectionAdmin $True
+    Set-SPOUser -site $Site -LoginName "user" -IsSiteCollectionAdmin $True
 }
 
 #single user
-Set-SPOUser -site "https://carmeuse-my.sharepoint.com/personal/jlbigler_carmeuse_net" -LoginName "CDEWAGHE" -IsSiteCollectionAdmin $true
+Set-SPOUser -site "https://contoso-my.sharepoint.com/personal/user_contoso_net" -LoginName "user" -IsSiteCollectionAdmin $true
 #get all sites
 $sites = Get-SPOSite -IncludePersonalSite $true -Limit All
 
 #loop through sites and set admin
 foreach ($site in $sites) {
-    Set-SPOUser -site $site.url -LoginName "srv_safeq" -IsSiteCollectionAdmin $true
+    Set-SPOUser -site $site.url -LoginName "user" -IsSiteCollectionAdmin $true
     $SiteAdmins = Get-SPOUser -Site $site.url -Limit ALL | Where { $_.IsSiteAdmin -eq $True}
 }
 
 #test
-get-spouser -site "https://carmeuse-my.sharepoint.com/personal/jlbigler_carmeuse_net" -Limit ALL | Where { $_.IsSiteAdmin -eq $True}
+get-spouser -site "https://contoso-my.sharepoint.com/personal/user_contoso_net" -Limit ALL | Where { $_.IsSiteAdmin -eq $True}
 $users = @();
 foreach ($site in $sites)
 {
@@ -45,14 +45,14 @@ $AllUsers = $null
 
 }
 #add admin to site
-Set-SPOUser -site "https://carmeuse-my.sharepoint.com/personal/jlbigler_carmeuse_net" -LoginName "azfavo" -IsSiteCollectionAdmin $true
+Set-SPOUser -site "https://contoso-my.sharepoint.com/personal/user_contoso_net" -LoginName "azfavo" -IsSiteCollectionAdmin $true
 
-$SiteAdmins = Get-SPOUser -Site "https://carmeuse-my.sharepoint.com/personal/jlbigler_carmeuse_net" -Limit ALL | Where { $_.IsSiteAdmin -eq $True}
-$SiteAdmins = Get-SPOUser -Site "https://carmeuse-my.sharepoint.com/personal/sflamand_carmeuse_net" -Limit ALL
+$SiteAdmins = Get-SPOUser -Site "https://contoso-my.sharepoint.com/personal/user_contoso_net" -Limit ALL | Where { $_.IsSiteAdmin -eq $True}
+$SiteAdmins = Get-SPOUser -Site "https://contoso-my.sharepoint.com/personal/user_contoso_net" -Limit ALL
 #test
-$SiteCollURL="https://carmeuse-my.sharepoint.com/personal/sflamand_carmeuse_net/"
-Get-SPOUser -Site "https://carmeuse-my.sharepoint.com/personal/sflamand_carmeuse_net" -Limit all | select *
-Get-SPOSite -Filter { Url -like "https://carmeuse-my.sharepoint.com/personal/sflamand_carmeuse_net" }
+$SiteCollURL="https://contoso-my.sharepoint.com/personal/user/"
+Get-SPOUser -Site "https://contoso-my.sharepoint.com/personal/user" -Limit all | select *
+Get-SPOSite -Filter { Url -like "https://contoso-my.sharepoint.com/personal/user" }
 #Get the Site colection
 $SiteColl = Get-SPOSite -URL $SiteCollURL
      

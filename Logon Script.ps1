@@ -36,27 +36,27 @@ $i = 0
 $letters = @('G','H','I','J','K','L','M','N','O','Q','R','S','T','U','V','W','X','Y','Z')
 
 #Filter variables
-$filtervar = "CNA-*"
-$admin = "Administration"
-$engineering = "Engineering"
-$environmental = "Environmental"
-$executive = "Executive"
-$fi = "FI"
-$hr = "HR"
-$it = "IT"
-$lanusers = "LanUsers"
-$le = "LE"
-$legal = "Legal"
-$lossprevention = "LossPrevention"
-$mm = "MM"
-$operations = "Operations"
-$payroll = "Payroll"
-$pm = "PM"
-$pp = "PP"
-$qm = "QM"
-$scale = "Scale"
-$sd = "SD"
-$semco = "Nam-Semco*"
+$filtervar = "placeholder-*"
+$admin = "placeholder"
+$engineering = "placeholder"
+$environmental = "placeholder"
+$executive = "placeholder"
+$fi = "placeholder"
+$hr = "placeholder"
+$it = "placeholder"
+$lanusers = "placeholder"
+$le = "placeholder"
+$legal = "placeholder"
+$lossprevention = "placeholder"
+$mm = "placeholder"
+$operations = "placeholder"
+$payroll = "placeholder"
+$pm = "placeholder"
+$pp = "placeholder"
+$qm = "placeholder"
+$scale = "placeholder"
+$sd = "placeholder"
+$semco = "placeholder*"
 
 #Mapped drives
 $drives = Get-PSDrive
@@ -81,7 +81,7 @@ Foreach ($group in $groups) {
     #Special Groups
     If ($group -match $semco) {
                 
-        New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\CAMLFS001\Semco-Stanco" -Persist
+        New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\server\placeholder" -Persist
         $i++
         
     }
@@ -98,7 +98,7 @@ Foreach ($group in $groups) {
         If ($group -match $admin) {
             Foreach ($FS in $FSs.name) {
                 If ($FS -match $output[1]) {
-                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$admin" -Persist
+                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$placeholder" -Persist
                     $i++
                 }
             }
@@ -106,7 +106,7 @@ Foreach ($group in $groups) {
         If ($group -match $engineering) {
             Foreach ($FS in $FSs.name) {
                 If ($FS -match $output[1]) {
-                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$engineering" -Persist
+                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$placeholder" -Persist
                     $i++
                 }
             }
@@ -114,7 +114,7 @@ Foreach ($group in $groups) {
         If ($group -match $environmental) {
             Foreach ($FS in $FSs.name) {
                 If ($FS -match $output[1]) {
-                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$environmental" -Persist
+                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$placeholder" -Persist
                     $i++
                 }
             }
@@ -122,12 +122,12 @@ Foreach ($group in $groups) {
         If ($group -match $executive) {
             Foreach ($FS in $FSs.name) {
                 If ($FS -match $output[1]) {
-                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$executive" -Persist
+                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$placeholder" -Persist
                     $i++
                 }
             }
         }
-        If ($group -match $fi -and $group -notmatch 'confidential' -or $group -match "FI-Confidential") {
+        If ($group -match $fi -and $group -notmatch 'server' -or $group -match "FI-server") {
             Foreach ($FS in $FSs.name) {
                 If ($FS -match $output[1]) {
                     New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$fi" -Persist
@@ -170,7 +170,7 @@ Foreach ($group in $groups) {
         If ($group -match $legal) {
             Foreach ($FS in $FSs.name) {
                 If ($FS -match $output[1]) {
-                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$legal" -Persist
+                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$placeholder" -Persist
                     $i++
                 }
             }
@@ -178,7 +178,7 @@ Foreach ($group in $groups) {
         If ($group -match $lossprevention) {
             Foreach ($FS in $FSs.name) {
                 If ($FS -match $output[1]) {
-                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$lossprevention" -Persist
+                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$placeholder" -Persist
                     $i++
                 }
             }
@@ -194,7 +194,7 @@ Foreach ($group in $groups) {
         If ($group -match $operations) {
             Foreach ($FS in $FSs.name) {
                 If ($FS -match $output[1]) {
-                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$operations" -Persist
+                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$placeholder" -Persist
                     $i++
                 }
             }
@@ -202,7 +202,7 @@ Foreach ($group in $groups) {
         If ($group -match $payroll) {
             Foreach ($FS in $FSs.name) {
                 If ($FS -match $output[1]) {
-                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$payroll" -Persist
+                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$placeholder" -Persist
                     $i++
                 }
             }
@@ -234,7 +234,7 @@ Foreach ($group in $groups) {
         If ($group -match $scale) {
             Foreach ($FS in $FSs.name) {
                 If ($FS -match $output[1]) {
-                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$scale" -Persist
+                    New-PSDrive -Name $letters[$i] -PSProvider "FileSystem" -Root "\\$FS\$placeholder" -Persist
                     $i++
                 }
             }
@@ -251,7 +251,7 @@ Foreach ($group in $groups) {
         If ($output[1] -match "AN" -and $groups -notcontains "CNA-NL*") {
             
             $baddrives = Get-CimInstance -Class Win32_NetworkConnection
-            $baddrives | Where-Object -FilterScript {$_.RemoteName -match "CANLFS*"}
+            $baddrives | Where-Object -FilterScript {$_.RemoteName -match "server*"}
             Foreach ($rm in $baddrives.LocalName){
                 net use $rm /delete
                 Write-Output "Deleted $rm drive because it was accidentally added"
