@@ -2,12 +2,14 @@
 #make sure you run this with an account that has admin permissions for AD
 $dls = Get-Content 'C:\Users\ADMQMFAVO\Desktop\dls.txt'
 
+$dls = Get-DistributionGroup | where {$_.PrimarySmtpAddress -like "DLP*"}
+
 foreach ($dl in $dls){
 
 $owner = Get-DistributionGroup -Identity "$dl"
 
 Write-Output $owner
 
-$owner.Name | Out-file -Append 'C:\Users\ADMQMFAVO\Desktop\dlcomplete.csv'
-$owner.ManagedBy.Name | Out-file -Append 'C:\Users\ADMQMFAVO\Desktop\dlcomplete.csv'
+$owner.Name | Out-file -Append 'C:\Users\ADMQMFAVO\Desktop\dlpcomplete.csv'
+$owner.ManagedBy.Name | Out-file -Append 'C:\Users\ADMQMFAVO\Desktop\dlpcomplete.csv'
 }
